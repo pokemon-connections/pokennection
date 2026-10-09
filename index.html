@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- =========================================================
+       PRIMARY SEO
+  ========================================================== -->
+  <title>Pokennection — Daily Pokémon Connections Game & Puzzle</title>
+
+  <meta
+    name="description"
+    content="Play Pokennection, a free daily Pokémon Connections game. Group 16 Pokémon into 4 hidden categories, test your Pokémon knowledge, play unlimited puzzles, and challenge yourself every day."
+  />
+
+  <meta
+    name="keywords"
+    content="Pokemon Connections, Pokémon Connections, Pokennection, Pokemon Connections Game, Daily Pokemon Puzzle, Pokemon Puzzle Game, Pokemon Connections Unlimited, Pokemon Trivia Game"
+  />
+
+  <meta name="author" content="Pokennection" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <link
+    rel="canonical"
+    href="https://pokemon-connections.github.io/pokennection/"
+  />
+
+  <!-- =========================================================
+       OPEN GRAPH
+  ========================================================== -->
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:title"
+    content="Pokennection — Daily Pokémon Connections Game"
+  />
+  <meta
+    property="og:description"
+    content="Group 16 Pokémon into 4 hidden categories in this free daily Pokémon Connections puzzle game."
+  />
+  <meta
+    property="og:url"
+    content="https://pokemon-connections.github.io/pokennection/"
+  />
+  <meta
+    property="og:image"
+    content="https://pokemon-connections.github.io/pokennection/pokemon.webp"
+  />
+  <meta property="og:site_name" content="Pokennection" />
+
+  <!-- =========================================================
+       TWITTER / X
+  ========================================================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="Pokennection — Pokémon Connections Game"
+  />
+  <meta
+    name="twitter:description"
+    content="Find 4 hidden groups among 16 Pokémon in a new daily Pokémon Connections puzzle."
+  />
+  <meta
+    name="twitter:image"
+    content="https://pokemon-connections.github.io/pokennection/pokemon.webp"
+  />
+
+  <!-- =========================================================
+       FAVICON
+       Uses poke.png from the repository root.
+  ========================================================== -->
+  <link rel="icon" type="image/png" href="./poke.png" />
+  <link rel="apple-touch-icon" href="./poke.png" />
+
+  <!-- =========================================================
+       PIXEL FONT
+  ========================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- =========================================================
+       STRUCTURED DATA
+  ========================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Pokennection",
+    "alternateName": "Pokémon Connections",
+    "url": "https://pokennection.org/",
+    "description": "Pokennection is a free daily Pokémon Connections puzzle game where players group 16 Pokémon into four hidden categories.",
+    "genre": [
+      "Puzzle",
+      "Trivia",
+      "Browser Game",
+      "Daily Puzzle"
+    ],
+    "gamePlatform": [
+      "Web Browser",
+      "Desktop",
+      "Mobile"
+    ],
+    "applicationCategory": "Game",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <style>
+    :root {
+      --yellow: #ffcb05;
+      --yellow-light: #ffe36b;
+      --blue: #2a75bb;
+      --blue-dark: #183b72;
+      --navy: #091a38;
+      --ink: #101828;
+      --cream: #fffaf0;
+      --white: #ffffff;
+      --purple: #7457d9;
+      --green: #4caf72;
+      --red: #e45a5a;
+      --border: #14213d;
+
+      --shadow-small: 4px 4px 0 #14213d;
+      --shadow-large: 8px 8px 0 #14213d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 203, 5, 0.18), transparent 27%),
+        radial-gradient(circle at 90% 20%, rgba(42, 117, 187, 0.14), transparent 30%),
+        var(--cream);
+      color: var(--ink);
+      font-family: "Inter", Arial, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .pixel-font {
+      font-family: "Press Start 2P", monospace;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 250, 240, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 3px solid var(--border);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    .brand-name {
+      font-family: "Press Start 2P", monospace;
+      font-size: 15px;
+      color: var(--blue-dark);
+      line-height: 1.5;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      transition: 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-play {
+      background: var(--yellow);
+      border: 3px solid var(--border);
+      padding: 11px 17px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .nav-play:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--border);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================== */
+
+    .hero {
+      position: relative;
+      padding: 74px 0 92px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(20, 33, 61, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 33, 61, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 62px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 3px solid var(--border);
+      box-shadow: var(--shadow-small);
+      padding: 9px 13px;
+      margin-bottom: 26px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      font-family: "Press Start 2P", monospace;
+      color: var(--blue-dark);
+      font-size: clamp(30px, 5.2vw, 63px);
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 span {
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--blue-dark);
+      text-shadow: 4px 4px 0 rgba(24, 59, 114, 0.13);
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      font-size: 19px;
+      line-height: 1.8;
+      color: #344054;
+      margin-bottom: 32px;
+    }
+
+    /* BIG CTA */
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-height: 78px;
+      padding: 20px 31px;
+      background: var(--yellow);
+      border: 4px solid var(--border);
+      box-shadow: 9px 9px 0 var(--border);
+      text-decoration: none;
+
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(13px, 1.8vw, 19px);
+      line-height: 1.45;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translate(4px, 4px);
+      box-shadow: 5px 5px 0 var(--border);
+      background: var(--yellow-light);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #667085;
+    }
+
+    .hero-art {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      background: var(--white);
+      border: 5px solid var(--border);
+      box-shadow: 12px 12px 0 var(--blue-dark);
+      padding: 16px;
+      transform: rotate(1.2deg);
+    }
+
+    .hero-card img {
+      width: 100%;
+      max-height: 530px;
+      object-fit: contain;
+      border: 3px solid var(--border);
+      background: #f4f6f8;
+    }
+
+    .pixel-badge {
+      position: absolute;
+      right: -19px;
+      top: -25px;
+      z-index: 5;
+      background: var(--purple);
+      color: white;
+      border: 4px solid var(--border);
+      box-shadow: var(--shadow-small);
+      padding: 13px 15px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 1.6;
+      transform: rotate(5deg);
+    }
+
+    /* =========================================================
+       STATS
+    ========================================================== */
+
+    .stats {
+      margin-top: -34px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--navy);
+      color: white;
+      border: 4px solid var(--border);
+      box-shadow: var(--shadow-large);
+    }
+
+    .stat {
+      padding: 28px 20px;
+      text-align: center;
+      border-right: 2px dashed rgba(255, 255, 255, 0.3);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Press Start 2P", monospace;
+      color: var(--yellow);
+      font-size: 20px;
+      margin-bottom: 9px;
+    }
+
+    .stat span {
+      font-size: 13px;
+      color: #d0d5dd;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       CONTENT SECTIONS
+    ========================================================== */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--blue);
+      margin-bottom: 17px;
+    }
+
+    .section-title {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(24px, 3.3vw, 39px);
+      line-height: 1.45;
+      color: var(--navy);
+      margin-bottom: 23px;
+    }
+
+    .section-copy {
+      color: #475467;
+      max-width: 780px;
+      font-size: 18px;
+    }
+
+    /* =========================================================
+       HOW IT WORKS
+    ========================================================== */
+
+    .how {
+      background: white;
+      border-top: 4px solid var(--border);
+      border-bottom: 4px solid var(--border);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+
+    .step {
+      background: var(--cream);
+      border: 3px solid var(--border);
+      box-shadow: var(--shadow-small);
+      padding: 29px 23px;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--yellow);
+      border: 3px solid var(--border);
+      font-family: "Press Start 2P", monospace;
+      margin-bottom: 22px;
+    }
+
+    .step h3 {
+      font-family: "Press Start 2P", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      color: var(--navy);
+    }
+
+    .step p {
+      color: #667085;
+      font-size: 15px;
+    }
+
+    /* =========================================================
+       SCREENSHOT
+    ========================================================== */
+
+    .game-preview-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .screenshot {
+      background: white;
+      border: 4px solid var(--border);
+      box-shadow: 10px 10px 0 var(--border);
+      padding: 12px;
+    }
+
+    .screenshot img {
+      width: 100%;
+      border: 2px solid var(--border);
+    }
+
+    /* =========================================================
+       FEATURES
+    ========================================================== */
+
+    .features {
+      background: var(--navy);
+      color: white;
+    }
+
+    .features .section-label {
+      color: var(--yellow);
+    }
+
+    .features .section-title {
+      color: white;
+    }
+
+    .features .section-copy {
+      color: #d0d5dd;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      border: 3px solid white;
+      padding: 28px;
+      min-height: 220px;
+      position: relative;
+    }
+
+    .feature-icon {
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-family: "Press Start 2P", monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--yellow);
+      margin-bottom: 14px;
+    }
+
+    .feature-card p {
+      color: #d0d5dd;
+      font-size: 15px;
+    }
+
+    /* =========================================================
+       SEO CONTENT
+    ========================================================== */
+
+    .seo-content {
+      background:
+        linear-gradient(135deg, rgba(255, 203, 5, 0.13), transparent 38%),
+        var(--cream);
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 38px;
+      margin-top: 46px;
+    }
+
+    .seo-box {
+      background: white;
+      border: 3px solid var(--border);
+      padding: 30px;
+    }
+
+    .seo-box h3 {
+      font-family: "Press Start 2P", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 17px;
+      color: var(--blue-dark);
+    }
+
+    .seo-box p {
+      color: #475467;
+      margin-bottom: 13px;
+    }
+
+    /* =========================================================
+       FINAL CTA
+    ========================================================== */
+
+    .final-cta {
+      padding: 100px 0 120px;
+    }
+
+    .final-card {
+      text-align: center;
+      background: var(--yellow);
+      border: 5px solid var(--border);
+      box-shadow: 12px 12px 0 var(--border);
+      padding: 66px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-logo {
+      width: min(320px, 70%);
+      margin: 0 auto 27px;
+      max-height: 110px;
+      object-fit: contain;
+    }
+
+    .final-card h2 {
+      font-family: "Press Start 2P", monospace;
+      color: var(--navy);
+      font-size: clamp(24px, 4vw, 44px);
+      line-height: 1.45;
+      max-width: 820px;
+      margin: 0 auto 20px;
+    }
+
+    .final-card p {
+      max-width: 700px;
+      margin: 0 auto 32px;
+      color: #344054;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .final-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 74px;
+      padding: 19px 29px;
+      background: var(--navy);
+      color: white;
+      border: 4px solid var(--navy);
+      box-shadow: 7px 7px 0 white;
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      transition: 0.15s ease;
+    }
+
+    .final-button:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 4px 4px 0 white;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
+
+    footer {
+      background: #071227;
+      color: #98a2b3;
+      padding: 44px 0;
+      border-top: 4px solid var(--border);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-brand {
+      color: white;
+      font-family: "Press Start 2P", monospace;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .disclaimer {
+      max-width: 690px;
+      font-size: 12px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================== */
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .game-preview-grid,
+      .seo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        max-width: 680px;
+      }
+
+      .steps,
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n + 2) {
+        border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+      }
+
+      .nav-links li:not(:last-child) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 26px, 1180px);
+      }
+
+      .hero {
+        padding: 48px 0 72px;
+      }
+
+      .hero-grid {
+        gap: 50px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .hero-cta {
+        width: 100%;
+        padding: 18px 15px;
+        font-size: 12px;
+      }
+
+      .brand-name {
+        font-size: 10px;
+      }
+
+      .nav-play {
+        font-size: 13px;
+        padding: 8px 11px;
+      }
+
+      .steps,
+      .feature-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      section {
+        padding: 74px 0;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .final-card {
+        padding: 46px 20px;
+      }
+
+      .footer-grid {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .disclaimer {
+        text-align: left;
+      }
+
+      .pixel-badge {
+        right: -5px;
+        top: -28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a
+        href="https://pokennection.org/"
+        class="brand"
+        aria-label="Play Pokennection"
+      >
+        <img
+          src="./poke.png"
+          alt="Pokennection logo"
+          class="brand-logo"
+          width="46"
+          height="46"
+        />
+
+        <span class="brand-name">
+          POKENNECTION
+        </span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#how-to-play">How to Play</a></li>
+        <li><a href="#features">Features</a></li>
+        <li>
+          <a
+            class="nav-play"
+            href="https://pokennection.org/"
+            target="_blank"
+            rel="noopener"
+          >
+            Play Now →
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            🧩 Free Daily Pokémon Puzzle
+          </div>
+
+          <h1>
+            Find the
+            <span>Pokémon Connections</span>
+          </h1>
+
+          <p class="hero-copy">
+            <strong>Pokennection</strong> is a free daily Pokémon Connections
+            game where you group 16 Pokémon into four hidden categories.
+            Test your Pokémon knowledge, spot unexpected patterns, protect
+            your lives, and solve a fresh puzzle every day.
+          </p>
+
+          <a
+            href="https://pokennection.org/"
+            class="hero-cta"
+            target="_blank"
+            rel="noopener"
+            aria-label="Play Pokennection Pokémon Connections game"
+          >
+            🎮 PLAY POKENNECTION →
+          </a>
+
+          <div class="hero-note">
+            Free to play · No download · Desktop & mobile
+          </div>
+
+        </div>
+
+        <div class="hero-art">
+
+          <div class="pixel-badge">
+            NEW PUZZLE<br />
+            EVERY DAY!
+          </div>
+
+          <div class="hero-card">
+            <img
+              src="./pokemon.webp"
+              alt="Pokennection daily Pokemon Connections puzzle game"
+              width="720"
+              height="620"
+              fetchpriority="high"
+            />
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         QUICK GAME FACTS
+    ======================================================== -->
+    <div class="stats">
+      <div class="container">
+
+        <div class="stats-grid">
+
+          <div class="stat">
+            <strong>16</strong>
+            <span>Pokémon per board</span>
+          </div>
+
+          <div class="stat">
+            <strong>4</strong>
+            <span>Hidden groups</span>
+          </div>
+
+          <div class="stat">
+            <strong>DAILY</strong>
+            <span>Fresh puzzle</span>
+          </div>
+
+          <div class="stat">
+            <strong>FREE</strong>
+            <span>Play in your browser</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- =======================================================
+         HOW TO PLAY
+    ======================================================== -->
+    <section class="how" id="how-to-play">
+
+      <div class="container">
+
+        <div class="section-label">
+          HOW TO PLAY
+        </div>
+
+        <h2 class="section-title">
+          How Does Pokémon Connections Work?
+        </h2>
+
+        <p class="section-copy">
+          Each Pokennection puzzle gives you 16 Pokémon. Your goal is to
+          identify four sets of four Pokémon that share a hidden connection.
+          The relationship might involve types, generations, evolutions,
+          visual traits, Pokédex facts, or another part of the Pokémon world.
+        </p>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>SCAN THE BOARD</h3>
+            <p>
+              Look through all 16 Pokémon before making your first guess.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>FIND A LINK</h3>
+            <p>
+              Choose four Pokémon that you believe share the same hidden
+              connection.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>SUBMIT</h3>
+            <p>
+              Submit your group. Correct answers reveal a complete category.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">4</div>
+            <h3>SOLVE ALL 4</h3>
+            <p>
+              Discover every category before you run out of lives.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         GAME SCREENSHOT
+    ======================================================== -->
+    <section>
+
+      <div class="container game-preview-grid">
+
+        <div>
+          <div class="section-label">
+            DAILY CHALLENGE
+          </div>
+
+          <h2 class="section-title">
+            A Pokémon Puzzle Worth Coming Back To
+          </h2>
+
+          <p class="section-copy">
+            Pokennection combines Pokémon trivia with a Connections-style
+            grouping puzzle. Some relationships are easy to spot, while
+            others deliberately overlap and force you to rethink your first
+            assumption.
+          </p>
+
+          <br />
+
+          <p class="section-copy">
+            A new daily board means you can return every day for another
+            short Pokémon challenge.
+          </p>
+
+          <br /><br />
+
+          <a
+            href="https://pokennection.org/"
+            class="hero-cta"
+            target="_blank"
+            rel="noopener"
+          >
+            PLAY TODAY'S PUZZLE →
+          </a>
+        </div>
+
+        <div class="screenshot">
+
+          <img
+            src="./pokennection-game.png"
+            alt="Pokennection Pokemon Connections game interface"
+            loading="lazy"
+            width="1000"
+            height="700"
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FEATURES
+    ======================================================== -->
+    <section class="features" id="features">
+
+      <div class="container">
+
+        <div class="section-label">
+          GAME FEATURES
+        </div>
+
+        <h2 class="section-title">
+          More Than One Daily Pokémon Puzzle
+        </h2>
+
+        <p class="section-copy">
+          Pokennection includes multiple ways to play, whether you only want
+          today's challenge or want to keep solving Pokémon Connections
+          puzzles.
+        </p>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">🧩</div>
+            <h3>DAILY PUZZLE</h3>
+            <p>
+              Play a fresh Pokémon Connections challenge every day.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">♾️</div>
+            <h3>UNLIMITED MODE</h3>
+            <p>
+              Keep solving puzzles after finishing the daily challenge.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>DIFFICULTY LEVELS</h3>
+            <p>
+              Choose Normal, Hard, or Hard+ depending on how difficult you
+              want your board to be.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🗓️</div>
+            <h3>PAST PUZZLES</h3>
+            <p>
+              Revisit earlier Pokémon Connections games and discover puzzles
+              you may have missed.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h3>ANSWERS</h3>
+            <p>
+              Explore previous solutions and learn how difficult Pokémon
+              groups were connected.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>BROWSER BASED</h3>
+            <p>
+              Play directly online without installing an application.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         SEO CONTENT
+    ======================================================== -->
+    <section class="seo-content">
+
+      <div class="container">
+
+        <div class="section-label">
+          FOR POKÉMON & PUZZLE FANS
+        </div>
+
+        <h2 class="section-title">
+          Pokémon Connections, Trivia and Logic in One Game
+        </h2>
+
+        <p class="section-copy">
+          If you enjoy Pokémon trivia, daily puzzle games, logic challenges
+          or Connections-style games, Pokennection turns Pokémon knowledge
+          into a quick daily brain teaser.
+        </p>
+
+        <div class="seo-grid">
+
+          <article class="seo-box">
+
+            <h3>
+              DAILY POKÉMON CONNECTIONS
+            </h3>
+
+            <p>
+              Every puzzle challenges you to find relationships between
+              Pokémon that may come from different generations, types or
+              evolution families.
+            </p>
+
+            <p>
+              The strongest strategy is often to identify the most specific
+              relationship first, then use elimination to solve the remaining
+              groups.
+            </p>
+
+          </article>
+
+
+          <article class="seo-box">
+
+            <h3>
+              POKÉMON CONNECTIONS UNLIMITED
+            </h3>
+
+            <p>
+              Finished today's game? Unlimited mode lets you continue playing
+              more Pokémon connection puzzles without waiting for tomorrow.
+            </p>
+
+            <p>
+              It's a useful way to practice pattern recognition and test how
+              deep your Pokémon knowledge really goes.
+            </p>
+
+          </article>
+
+
+          <article class="seo-box">
+
+            <h3>
+              PAST PUZZLES & ANSWERS
+            </h3>
+
+            <p>
+              Players can revisit earlier games and explore previous Pokémon
+              Connections answers when a hidden group proves particularly
+              difficult.
+            </p>
+
+          </article>
+
+
+          <article class="seo-box">
+
+            <h3>
+              PLAY IN YOUR BROWSER
+            </h3>
+
+            <p>
+              Pokennection is designed as a lightweight browser game, making
+              it easy to jump into a puzzle from desktop or mobile.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         SECOND SCREENSHOT
+    ======================================================== -->
+    <section>
+
+      <div class="container">
+
+        <div class="screenshot">
+
+          <img
+            src="./pokemon-connections-game.png"
+            alt="Daily Pokemon Connections puzzle on Pokennection"
+            loading="lazy"
+            width="1200"
+            height="800"
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FINAL CTA
+    ======================================================== -->
+    <section class="final-cta">
+
+      <div class="container">
+
+        <div class="final-card">
+
+          <!-- Filename contains a space: "poke .png" -->
+          <img
+            src="./poke%20.png"
+            alt="Pokennection Pokemon Connections logo"
+            class="final-logo"
+            loading="lazy"
+          />
+
+          <h2>
+            Can You Find All 4 Connections?
+          </h2>
+
+          <p>
+            Put your Pokémon knowledge to the test. Find four hidden groups
+            among sixteen Pokémon and solve today's Pokennection.
+          </p>
+
+          <a
+            href="https://pokennection.org/"
+            class="final-button"
+            target="_blank"
+            rel="noopener"
+            aria-label="Play Pokennection at pokennection.org"
+          >
+            🎮 PLAY FREE NOW →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer>
+
+    <div class="container footer-grid">
+
+      <div>
+        <div class="footer-brand">
+          POKENNECTION
+        </div>
+
+        <br />
+
+        <a
+          href="https://pokennection.org/"
+          target="_blank"
+          rel="noopener"
+        >
+          pokennection.org
+        </a>
+      </div>
+
+      <p class="disclaimer">
+        Pokennection is an unofficial fan-made Pokémon puzzle experience.
+        Pokémon and related names, characters and trademarks belong to their
+        respective owners. This project is not affiliated with or endorsed by
+        Nintendo, Game Freak, The Pokémon Company, or The New York Times.
+      </p>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
