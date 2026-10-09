@@ -52,7 +52,7 @@ The challenge is that some Pokémon may appear to fit more than one possible cat
 
 ---
 
-![Pokemon Connections Daily Puzzle](./pokemon-connections-game.png)
+![Pokemon Connections Daily Puzzle](./pokennection-game2.png)
 
 ## Daily Pokémon Connections
 
